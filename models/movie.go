@@ -23,13 +23,8 @@ func (m *IMovies) FindByName(s string) IMovies {
 	for _, v := range *m {
 
 		if strings.Contains(strings.ToLower(v.Name), strings.ToLower(s)) {
-
 			arr = append(arr, v)
-
 		}
-
 	}
-
 	return arr
-
 }
