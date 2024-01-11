@@ -28,3 +28,29 @@ func (m *IMovies) FindByName(s string) IMovies {
 	}
 	return arr
 }
+
+func (m *IMovies) DeleteMovie(s string) int {
+
+	temp := *m
+	index := -1
+
+	for idx, v := range *m {
+		if strings.EqualFold(strings.ToLower(v.Name), strings.ToLower(s)) {
+			index = idx
+		}
+	}
+
+	if index == -1 {
+		return -1
+	} else if index == 0 {
+		*m = temp[index+1:]
+		return 1
+	} else if index == len(temp)-1 {
+		*m = temp[:index]
+		return 1
+	} else {
+		temp = append(temp[:index], temp[index+1:]...)
+		*m = temp
+		return 1
+	}
+}
