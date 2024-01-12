@@ -8,7 +8,8 @@ import (
 )
 
 func GetRandom(w http.ResponseWriter, r *http.Request) {
-	url := "https://api.quotale.io/randofkfms"
+	url := "https://dummyjson.com/quotes/random"
+
 	resp, err := http.Get(url)
 
 	if err != nil || strings.HasPrefix(resp.Status, "4") {
@@ -21,6 +22,9 @@ func GetRandom(w http.ResponseWriter, r *http.Request) {
 	var data map[string]string
 	json.Unmarshal(body, &data)
 
-	w.Write([]byte(data["content"]))
+	// data2, _ := json.Marshal(map[string]string{"quotes": data["quote"]})
+	// w.Write(data2)
+
+	json.NewEncoder(w).Encode(map[string]string{"quote": data["quote"]})
 
 }
