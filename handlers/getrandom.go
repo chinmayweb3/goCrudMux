@@ -20,6 +20,7 @@ func GetRandom(w http.ResponseWriter, r *http.Request) {
 	defer resp.Body.Close()
 
 	var data map[string]string
+	// var data map[string]string
 	json.Unmarshal(body, &data)
 
 	// data2, _ := json.Marshal(map[string]string{"quotes": data["quote"]})
